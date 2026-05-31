@@ -3,498 +3,1006 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Sarathy — Your Financial Companion</title>
+<title>Sarathy — Navnit's Companion</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--or:#E87722;--orl:#FFF3E8;--orm:#FDDBB8;--dk:#1C1917;--tx:#44403C;--mu:#A8A29E;--bg:#F5F5F4;--cd:#FFFFFF;--br:rgba(0,0,0,0.08);--gn:#16A34A;--gnb:#F0FDF4;--rd:#DC2626;--rdb:#FEF2F2;--am:#D97706;--amb:#FFFBEB;--bl:#2563EB;--blb:#EFF6FF;--pu:#7C3AED;--pub:#F5F3FF;}
-body{font-family:'DM Sans',sans-serif;background:#E8E5E0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px 16px}
-.phone{width:375px;height:790px;background:var(--bg);border-radius:44px;border:2px solid rgba(0,0,0,0.14);overflow:hidden;position:relative;box-shadow:0 40px 80px rgba(0,0,0,0.2),0 0 0 1px rgba(255,255,255,0.5) inset}
-.screen{display:none;flex-direction:column;height:100%}
+
+:root{
+  --s:#E87722;
+  --s-deep:#C5611A;
+  --s-glow:rgba(232,119,34,0.15);
+  --s-warm:#FFF3E8;
+  --ink:#1A1410;
+  --ink-2:#4A3F35;
+  --ink-3:#8C7B6E;
+  --paper:#FDFAF6;
+  --paper-2:#F5EFE6;
+  --paper-3:#EDE4D6;
+  --line:rgba(74,63,53,0.1);
+  --gn:#2D7A4F;
+  --gn-bg:#F0F9F4;
+  --rd:#C13333;
+  --rd-bg:#FDF1F1;
+  --bl:#2563EB;
+  --bl-bg:#EFF6FF;
+  --radius:20px;
+}
+
+body{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  background:#1A0F08;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background-image:radial-gradient(ellipse at 30% 50%,rgba(232,119,34,0.08) 0%,transparent 60%);
+}
+
+.phone{
+  width:375px;
+  height:812px;
+  background:var(--paper);
+  border-radius:44px;
+  overflow:hidden;
+  position:relative;
+  box-shadow:0 0 0 1px rgba(255,255,255,0.06),0 40px 80px rgba(0,0,0,0.7),0 0 120px rgba(232,119,34,0.1);
+}
+
+.screen{display:none;flex-direction:column;height:100%;position:absolute;width:100%;top:0;left:0;background:var(--paper)}
 .screen.active{display:flex}
-.sb{background:var(--or);padding:12px 20px 8px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
-.sb .t{color:white;font-size:12px;font-weight:600}
-.sb .ic{color:white;font-size:14px;display:flex;gap:6px}
-.sc{flex:1;overflow-y:auto;scrollbar-width:none}
-.sc::-webkit-scrollbar{display:none}
-.nb{background:white;border-top:0.5px solid var(--br);display:flex;padding:8px 0 14px;flex-shrink:0}
-.ni{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;color:var(--mu);background:none;border:none;padding:4px 0;transition:color 0.2s;font-family:'DM Sans',sans-serif}
-.ni.on{color:var(--or)}
-.ni i{font-size:20px}
-.ni span{font-size:10px;font-weight:500}
-.sh{background:var(--or);padding:16px 20px 20px;flex-shrink:0}
-.sh h1{font-family:'DM Serif Display',serif;color:white;font-size:22px;font-weight:400;margin-bottom:2px}
-.sh p{color:rgba(255,255,255,0.8);font-size:13px}
-.card{background:var(--cd);border-radius:16px;border:0.5px solid var(--br);padding:16px;margin:0 16px 12px}
-.sl{padding:4px 20px 8px;font-size:13px;font-weight:600;color:var(--dk)}
-.gr{padding:16px 20px 4px}
-.gr .nm{font-family:'DM Serif Display',serif;font-size:24px;color:var(--dk);font-weight:400}
-.gr .sb2{font-size:13px;color:var(--mu);margin-top:2px}
-.ms{margin:8px 16px 12px;border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer}
-.ms.org{background:var(--or)}
-.ms.wh{background:white;border:0.5px solid var(--br)}
-.mic{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.mic.lo{background:rgba(255,255,255,0.2);color:white}
-.mic.ti{background:var(--orl);color:var(--or)}
-.mt p.w{color:white;font-size:14px;font-weight:500;line-height:1.3}
-.mt p.d{color:var(--dk);font-size:14px;font-weight:500}
-.mt span.w{color:rgba(255,255,255,0.75);font-size:12px}
-.mt span.m{color:var(--mu);font-size:12px}
-.mt{flex:1}
-.mg{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px 12px}
-.mc{background:white;border-radius:14px;border:0.5px solid var(--br);padding:14px}
-.mc .lb{font-size:11px;color:var(--mu);font-weight:500;text-transform:uppercase;letter-spacing:0.05em}
-.mc .am{font-size:22px;font-weight:600;color:var(--dk);margin:4px 0 2px}
-.mc .sb3{font-size:11px}
-.mc .sb3.gn{color:var(--gn)}
-.mc .sb3.rd{color:var(--rd)}
-.mc .sb3.mu{color:var(--mu)}
-.bb{height:4px;background:#F5F5F4;border-radius:2px;margin-top:8px;overflow:hidden}
-.bf{height:100%;border-radius:2px;background:var(--or)}
-.qa{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:0 16px 16px}
-.qb{display:flex;flex-direction:column;align-items:center;gap:6px;background:white;border:0.5px solid var(--br);border-radius:12px;padding:12px 6px;cursor:pointer;color:var(--dk);transition:transform 0.15s;font-family:'DM Sans',sans-serif}
-.qb:active{transform:scale(0.95)}
-.qb i{font-size:20px;color:var(--or)}
-.qb span{font-size:10px;font-weight:500;text-align:center;line-height:1.2}
-.mrc{background:var(--orl);border:1px solid var(--orm)}
-.mi{font-size:13px;color:var(--tx);line-height:1.6;margin-bottom:10px}
-.mi strong{color:var(--or)}
-.mt2{display:inline-flex;align-items:center;gap:4px;background:var(--or);color:white;border-radius:20px;padding:4px 10px;font-size:11px;font-weight:500}
-.ml{font-size:11px;color:var(--or);font-weight:500;cursor:pointer}
-.po{position:absolute;inset:0;background:rgba(0,0,0,0.5);display:none;align-items:flex-end;z-index:100}
-.pm{background:white;border-radius:24px 24px 0 0;width:100%;padding:24px 20px}
-.pm .pl{font-size:12px;font-weight:600;color:var(--or);text-transform:uppercase;letter-spacing:0.08em}
-.pm h2{font-family:'DM Serif Display',serif;font-size:20px;color:var(--dk);margin-top:4px;font-weight:400}
-.pm .pa{font-size:32px;font-weight:700;color:var(--or);margin:12px 0 2px}
-.pm .pi{font-size:15px;color:var(--tx)}
-.pm .ps{background:var(--orl);border-radius:12px;padding:12px;margin:16px 0}
-.pm .pf{font-size:11px;color:var(--or);font-weight:600;margin-bottom:4px}
-.pm .ps p{font-size:13px;color:var(--tx);line-height:1.5}
-.pb2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.by{background:var(--or);color:white;border:none;border-radius:12px;padding:14px;font-size:15px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif}
-.bn2{background:white;color:var(--tx);border:1px solid var(--br);border-radius:12px;padding:14px;font-size:15px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif}
-.ch{display:flex;flex-direction:column;height:100%}
-.chh{background:var(--or);padding:14px 20px;display:flex;align-items:center;gap:12px;flex-shrink:0}
-.ca{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;color:white;font-size:16px}
-.ci p{color:white;font-size:15px;font-weight:500}
-.ci span{color:rgba(255,255,255,0.75);font-size:12px}
-.do{width:7px;height:7px;background:#4ADE80;border-radius:50%;display:inline-block;margin-right:4px}
-.cm{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;scrollbar-width:none}
-.cm::-webkit-scrollbar{display:none}
-.msg{display:flex;gap:8px;max-width:85%}
-.msg.us{align-self:flex-end;flex-direction:row-reverse}
-.bu{padding:10px 14px;border-radius:18px;font-size:14px;line-height:1.55;color:var(--dk)}
-.msg.ag .bu{background:white;border:0.5px solid var(--br);border-bottom-left-radius:4px}
-.msg.us .bu{background:var(--or);color:white;border-bottom-right-radius:4px}
-.av{width:28px;height:28px;flex-shrink:0;border-radius:50%;background:var(--orl);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--or);font-weight:600;font-family:'DM Serif Display',serif;align-self:flex-end}
-.cs{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-.cb{background:var(--orl);color:var(--or);border:1px solid var(--orm);border-radius:20px;padding:6px 12px;font-size:12px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s}
-.cb:hover{background:var(--or);color:white}
-.cb:disabled{opacity:0.5;cursor:default}
-.ty{display:flex;gap:4px;align-items:center;padding:10px 14px;background:white;border:0.5px solid var(--br);border-radius:18px;border-bottom-left-radius:4px;width:fit-content}
-.td{width:6px;height:6px;border-radius:50%;background:var(--mu);animation:bn 1.2s infinite}
-.td:nth-child(2){animation-delay:0.2s}
-.td:nth-child(3){animation-delay:0.4s}
-@keyframes bn{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-4px)}}
-.cib{padding:12px 16px;background:white;border-top:0.5px solid var(--br);display:flex;gap:10px;align-items:flex-end;flex-shrink:0}
-.ci2{flex:1;background:var(--bg);border:0.5px solid var(--br);border-radius:20px;padding:10px 16px;font-size:14px;font-family:'DM Sans',sans-serif;resize:none;max-height:80px;line-height:1.4;color:var(--dk);outline:none}
-.sb4{width:38px;height:38px;border-radius:50%;background:var(--or);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:opacity 0.15s}
-.sb4 i{color:white;font-size:16px}
-.sb4:disabled{opacity:0.4}
-.gc{background:white;border-radius:16px;border:0.5px solid var(--br);padding:16px;margin:0 16px 12px}
-.gt{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
-.gn2{font-size:15px;font-weight:600;color:var(--dk)}
-.gct{font-size:11px;color:var(--mu);margin-top:2px}
-.gp{font-size:18px;font-weight:600;color:var(--or);font-family:'DM Serif Display',serif}
-.gam{display:flex;justify-content:space-between;font-size:12px;color:var(--mu);margin-bottom:6px}
-.gam strong{color:var(--dk)}
-.gb{height:8px;background:var(--orl);border-radius:4px;overflow:hidden;margin-bottom:12px}
-.gbf{height:100%;background:var(--or);border-radius:4px}
-.ga{width:100%;background:var(--orl);color:var(--or);border:1px dashed var(--orm);border-radius:10px;padding:9px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;gap:6px}
-.ngb{margin:0 16px 16px;background:var(--or);color:white;border:none;border-radius:14px;padding:14px;font-size:15px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;width:calc(100% - 32px);display:flex;align-items:center;justify-content:center;gap:8px}
-.in-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:0.5px solid #BFDBFE}
-.in-row:last-child{border-bottom:none}
-.in-label{font-size:13px;color:var(--dk)}
-.in-badge{border-radius:20px;padding:3px 10px;font-size:11px;font-weight:600}
-.in-badge.ok{background:var(--gnb);color:var(--gn)}
-.in-badge.no{background:var(--rdb);color:var(--rd)}
-.in-badge.na{background:#F5F5F4;color:var(--mu)}
-.ns{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px 12px}
-.nc{background:white;border-radius:12px;border:0.5px solid var(--br);padding:12px}
-.nc .vl{font-size:20px;font-weight:600;color:var(--dk);font-family:'DM Serif Display',serif}
-.nc .lb2{font-size:11px;color:var(--mu);margin-top:2px}
-.nc .sv{font-size:11px;color:var(--gn);font-weight:500}
-.ns2{display:flex;gap:14px;padding:14px 16px;border-bottom:0.5px solid var(--br)}
-.ns2:last-child{border-bottom:none}
-.sn{width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600}
-.sn.dn{background:var(--gnb);color:var(--gn)}
-.sn.ac{background:var(--or);color:white}
-.sn.td2{background:#F5F5F4;color:var(--mu)}
-.st{font-size:14px;font-weight:500;color:var(--dk);margin-bottom:2px}
-.sd{font-size:12px;color:var(--mu);line-height:1.5}
-.sc2{display:inline-flex;align-items:center;gap:4px;color:var(--or);font-size:12px;font-weight:500;margin-top:6px;cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;padding:0}
-.share-card{background:var(--or);border-radius:16px;padding:18px;margin:0 16px 12px;position:relative;overflow:hidden}
-.share-card h3{font-family:'DM Serif Display',serif;color:white;font-size:17px;font-weight:400;margin-bottom:4px}
-.share-card p{color:rgba(255,255,255,0.8);font-size:12px;line-height:1.5;margin-bottom:12px}
-.share-btn{background:white;color:var(--or);border:none;border-radius:10px;padding:10px 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;gap:6px}
-.sip-card{background:var(--or);border-radius:14px;padding:16px;margin:0 16px 12px}
-.sip-card h3{font-family:'DM Serif Display',serif;color:white;font-size:17px;font-weight:400;margin-bottom:6px}
-.sip-card p{color:rgba(255,255,255,0.85);font-size:12px;line-height:1.6;margin-bottom:12px}
-.sip-calc{background:rgba(255,255,255,0.15);border-radius:10px;padding:12px}
-.sip-calc label{color:rgba(255,255,255,0.8);font-size:12px}
-.sip-calc input[type=range]{width:100%;accent-color:white;margin:4px 0 8px;display:block}
-.sip-result{text-align:center;margin-top:10px}
-.sip-result .big{font-family:'DM Serif Display',serif;font-size:28px;color:white}
-.sip-result .lbl{font-size:11px;color:rgba(255,255,255,0.75)}
-.cmp-row{display:flex;align-items:flex-start;gap:12px;padding:12px 16px;border-bottom:0.5px solid var(--br)}
-.cmp-row:last-child{border-bottom:none}
-.cmp-ic{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
-.cmp-nm{font-size:13px;font-weight:600;color:var(--dk)}
-.cmp-tx{font-size:11px;color:var(--mu);line-height:1.4;margin-top:2px}
-.cmp-pct{font-size:14px;font-weight:600;color:var(--gn)}
-.cmp-lb{font-size:10px;color:var(--mu)}
-.ab{margin:0 16px 12px;background:var(--amb);border:1px solid #FDE68A;border-radius:12px;padding:12px;display:flex;gap:10px;align-items:flex-start}
-.ab i{color:var(--am);font-size:18px;flex-shrink:0;margin-top:1px}
-.ab p{font-size:13px;color:var(--tx);line-height:1.5}
-.ab strong{color:var(--am)}
-.bc{display:flex;gap:4px;height:120px;align-items:flex-end;padding:0 16px 4px}
-.bco{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
-.bcf{width:100%;background:var(--orm);border-radius:4px 4px 0 0}
-.bcf.td3{background:var(--or)}
-.bcl{font-size:10px;color:var(--mu)}
-.spc{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:0.5px solid var(--br)}
-.spc:last-child{border-bottom:none}
-.sci{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
-.scn{font-size:14px;font-weight:500;color:var(--dk)}
-.sct{font-size:11px;color:var(--mu)}
-.sca{font-size:15px;font-weight:600;color:var(--dk);margin-left:auto}
+.scroll{flex:1;overflow-y:auto;scrollbar-width:none}
+.scroll::-webkit-scrollbar{display:none}
+
+/* STATUS BAR */
+.status{background:var(--ink);padding:14px 24px 10px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.status-time{color:rgba(255,255,255,0.9);font-size:13px;font-weight:600}
+.status-icons{color:rgba(255,255,255,0.7);font-size:12px}
+
+/* NAV */
+.nav{background:var(--ink);display:flex;padding:12px 0 20px;flex-shrink:0}
+.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.35);font-family:'Plus Jakarta Sans',sans-serif;transition:color 0.2s}
+.nav-btn.on{color:var(--s)}
+.nav-btn svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.nav-btn span{font-size:10px;font-weight:500}
+
+/* SECTION HEAD */
+.sec-head{padding:16px 24px 8px;font-size:11px;color:var(--ink-3);letter-spacing:0.1em;text-transform:uppercase;font-weight:600}
+
+/* ═══════════ HOME ═══════════ */
+.hero-card{
+  background:var(--ink);
+  padding:24px 24px 20px;
+  position:relative;
+  overflow:hidden;
+  flex-shrink:0;
+}
+.hero-card::before{
+  content:'';
+  position:absolute;
+  top:-40px;right:-40px;
+  width:180px;height:180px;
+  background:radial-gradient(circle,rgba(232,119,34,0.28) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-card::after{
+  content:'पक्का';
+  position:absolute;
+  bottom:-8px;right:18px;
+  font-size:72px;
+  font-family:'Lora',serif;
+  color:rgba(255,255,255,0.04);
+  font-weight:400;
+  pointer-events:none;
+  line-height:1;
+}
+.hero-label{font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px}
+.hero-greet{font-family:'Lora',serif;font-size:21px;color:white;font-weight:400;line-height:1.4;margin-bottom:10px}
+.hero-greet em{color:var(--s);font-style:italic}
+.hero-msg{font-size:13.5px;color:rgba(255,255,255,0.72);line-height:1.65;margin-bottom:16px}
+.hero-msg strong{color:rgba(255,255,255,0.92);font-weight:600}
+.hero-cta{
+  background:var(--s);color:white;border:none;border-radius:12px;
+  padding:12px 20px;font-size:13.5px;font-weight:600;cursor:pointer;
+  font-family:'Plus Jakarta Sans',sans-serif;display:flex;align-items:center;gap:8px;
+  transition:opacity 0.15s;width:100%;justify-content:center;
+}
+.hero-cta:active{opacity:0.85}
+
+/* BANK BALANCE CARD */
+.bank-card{
+  margin:14px 16px 0;
+  background:linear-gradient(135deg,#1A2A1F 0%,#0D1A13 100%);
+  border-radius:var(--radius);
+  padding:20px;
+  position:relative;
+  overflow:hidden;
+}
+.bank-card::before{
+  content:'';
+  position:absolute;top:-30px;right:-30px;
+  width:120px;height:120px;
+  background:radial-gradient(circle,rgba(45,122,79,0.35) 0%,transparent 70%);
+  pointer-events:none;
+}
+.bank-tag{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:8px;font-weight:600}
+.bank-name{font-size:12px;color:rgba(255,255,255,0.55);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.bank-name span{background:rgba(255,255,255,0.08);border-radius:4px;padding:2px 8px;font-size:10px}
+.bank-balance{font-family:'Lora',serif;font-size:32px;color:white;font-weight:400;line-height:1;margin-bottom:4px}
+.bank-balance em{font-size:18px;color:rgba(255,255,255,0.5);font-style:normal;margin-right:4px}
+.bank-sub{font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:14px}
+.bank-row{display:flex;gap:10px}
+.bank-stat{flex:1;background:rgba(255,255,255,0.06);border-radius:10px;padding:10px 12px}
+.bank-stat-label{font-size:10px;color:rgba(255,255,255,0.35);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.06em}
+.bank-stat-val{font-size:15px;font-weight:600;color:white}
+.bank-stat-val.green{color:#4ADE80}
+.bank-stat-val.orange{color:var(--s)}
+
+/* DECISION ALERT CARD */
+.decision-card{
+  margin:10px 16px;
+  background:linear-gradient(135deg,#2A1810 0%,#1E1208 100%);
+  border:1px solid rgba(232,119,34,0.3);
+  border-radius:var(--radius);
+  padding:18px;
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+}
+.decision-card::before{
+  content:'';
+  position:absolute;bottom:-20px;left:-20px;
+  width:100px;height:100px;
+  background:radial-gradient(circle,rgba(232,119,34,0.2) 0%,transparent 70%);
+}
+.dc-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  background:rgba(232,119,34,0.15);border:1px solid rgba(232,119,34,0.3);
+  border-radius:20px;padding:4px 10px;margin-bottom:10px;
+  font-size:10px;font-weight:600;color:var(--s);letter-spacing:0.08em;text-transform:uppercase;
+}
+.dc-title{font-family:'Lora',serif;font-size:18px;color:white;font-weight:400;line-height:1.35;margin-bottom:8px}
+.dc-title em{color:var(--s);font-style:italic}
+.dc-body{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6;margin-bottom:14px}
+.dc-pills{display:flex;gap:8px;flex-wrap:wrap}
+.dc-pill{
+  background:rgba(255,255,255,0.07);border-radius:20px;padding:5px 12px;
+  font-size:12px;color:rgba(255,255,255,0.55);
+}
+.dc-pill.hot{background:rgba(232,119,34,0.15);color:var(--s);border:1px solid rgba(232,119,34,0.2)}
+.dc-action{display:inline-flex;align-items:center;gap:5px;margin-top:14px;font-size:13px;font-weight:600;color:var(--s)}
+.dc-action svg{width:14px;height:14px;stroke:var(--s);stroke-width:2.5;fill:none;stroke-linecap:round}
+
+/* LOAN COMPARE CARDS */
+.loan-card{
+  margin:6px 16px;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:16px 18px;
+  cursor:pointer;
+  transition:transform 0.15s,box-shadow 0.15s;
+  position:relative;
+}
+.loan-card:active{transform:scale(0.98)}
+.loan-card.best{border-color:rgba(45,122,79,0.4);background:var(--gn-bg)}
+.loan-best-badge{
+  position:absolute;top:12px;right:14px;
+  background:var(--gn);color:white;
+  font-size:10px;font-weight:700;letter-spacing:0.06em;
+  padding:3px 8px;border-radius:20px;text-transform:uppercase;
+}
+.loan-bank{font-size:12px;color:var(--ink-3);margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.loan-bank-dot{width:8px;height:8px;border-radius:50%;background:var(--s);display:inline-block}
+.loan-name{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:2px}
+.loan-rate-row{display:flex;align-items:baseline;gap:6px;margin:8px 0}
+.loan-rate{font-family:'Lora',serif;font-size:26px;color:var(--ink);font-weight:400}
+.loan-rate-unit{font-size:12px;color:var(--ink-3)}
+.loan-details{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.ld-chip{background:var(--paper-2);border-radius:8px;padding:5px 10px;font-size:11px;color:var(--ink-2);font-weight:500}
+.ld-chip.g{background:var(--gn-bg);color:var(--gn)}
+.loan-emi{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-3)}
+.loan-emi strong{color:var(--ink);font-weight:700}
+
+/* SARATHY TIP */
+.sarathy-tip{
+  margin:6px 16px 10px;
+  background:var(--s-warm);
+  border:1px solid rgba(232,119,34,0.2);
+  border-radius:16px;
+  padding:14px 16px;
+  display:flex;gap:12px;
+}
+.tip-av{
+  width:32px;height:32px;flex-shrink:0;
+  background:var(--s);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Lora',serif;font-size:14px;color:white;font-style:italic;
+}
+.tip-label{font-size:10px;color:var(--s);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px}
+.tip-body{font-size:13px;color:var(--ink-2);line-height:1.6}
+.tip-body strong{color:var(--ink);font-weight:600}
+
+/* EMI TIMELINE */
+.emi-timeline{margin:0 16px 10px;background:white;border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+.eti-title{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:4px}
+.eti-sub{font-size:12px;color:var(--ink-3);margin-bottom:14px}
+.eti-bar-wrap{margin-bottom:10px}
+.eti-label{font-size:11px;color:var(--ink-3);margin-bottom:4px;display:flex;justify-content:space-between}
+.eti-bar{height:10px;border-radius:5px;background:var(--paper-3);overflow:hidden;margin-bottom:2px}
+.eti-fill{height:100%;border-radius:5px;transition:width 0.5s ease}
+.eti-fill.green{background:linear-gradient(90deg,#2D7A4F,#4ADE80)}
+.eti-fill.orange{background:linear-gradient(90deg,var(--s),#F5A623)}
+.eti-fill.blue{background:linear-gradient(90deg,#2563EB,#60A5FA)}
+
+/* ═══════════ CHAT ═══════════ */
+.chat-header{background:var(--ink);padding:16px 20px;display:flex;align-items:center;gap:14px;flex-shrink:0}
+.chat-avatar{width:42px;height:42px;background:var(--s);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Lora',serif;font-size:18px;color:white;font-style:italic}
+.chat-info p{color:white;font-size:15px;font-weight:600}
+.chat-info span{color:rgba(255,255,255,0.5);font-size:12px}
+.online-dot{width:7px;height:7px;background:#4ADE80;border-radius:50%;display:inline-block;margin-right:4px}
+.chat-back{margin-left:auto;background:rgba(255,255,255,0.1);border:none;border-radius:20px;color:rgba(255,255,255,0.7);padding:6px 14px;font-size:12px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif}
+.chat-msgs{flex:1;overflow-y:auto;padding:20px 16px;display:flex;flex-direction:column;gap:14px;scrollbar-width:none;background:var(--paper)}
+.chat-msgs::-webkit-scrollbar{display:none}
+.msg{display:flex;gap:10px;max-width:82%}
+.msg.user{align-self:flex-end;flex-direction:row-reverse}
+.msg-av{width:30px;height:30px;border-radius:50%;background:var(--s-warm);display:flex;align-items:center;justify-content:center;font-family:'Lora',serif;font-size:13px;color:var(--s);font-style:italic;flex-shrink:0;align-self:flex-end}
+.bubble{padding:12px 16px;border-radius:20px;font-size:14px;line-height:1.6;color:var(--ink)}
+.msg.agent .bubble{background:white;border:1px solid var(--line);border-bottom-left-radius:4px}
+.msg.user .bubble{background:var(--s);color:white;border-bottom-right-radius:4px}
+.quick-replies{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.qr{background:var(--paper-2);color:var(--s);border:1px solid rgba(232,119,34,0.25);border-radius:20px;padding:7px 14px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all 0.15s}
+.qr:hover{background:var(--s);color:white}
+.qr:disabled{opacity:0.45;cursor:default}
+.typing-row{display:flex;gap:10px;max-width:82%}
+.typing-bubble{background:white;border:1px solid var(--line);border-radius:20px;border-bottom-left-radius:4px;padding:14px 18px;display:flex;gap:5px;align-items:center}
+.tdot{width:7px;height:7px;border-radius:50%;background:var(--ink-3);animation:tdot 1.2s ease-in-out infinite}
+.tdot:nth-child(2){animation-delay:0.2s}
+.tdot:nth-child(3){animation-delay:0.4s}
+@keyframes tdot{0%,80%,100%{transform:scale(0.7);opacity:0.4}40%{transform:scale(1);opacity:1}}
+.chat-input-row{background:white;border-top:1px solid var(--line);padding:10px 14px;display:flex;align-items:flex-end;gap:10px;flex-shrink:0}
+.chat-textarea{flex:1;border:1.5px solid var(--paper-3);border-radius:20px;padding:10px 16px;font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;color:var(--ink);resize:none;background:var(--paper);outline:none;max-height:80px;transition:border-color 0.2s}
+.chat-textarea:focus{border-color:var(--s)}
+.send-btn{width:38px;height:38px;background:var(--s);border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:opacity 0.15s}
+.send-btn:disabled{opacity:0.45}
+.send-btn svg{width:16px;height:16px;stroke:white;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round;margin-left:2px}
+
+/* CONTEXT BUBBLE in chat */
+.ctx-card{margin:0 0 4px;background:linear-gradient(135deg,#1A1410,#2A1810);border-radius:14px;padding:14px 16px;border:1px solid rgba(232,119,34,0.2)}
+.ctx-title{font-size:11px;color:var(--s);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px}
+.ctx-row{display:flex;justify-content:space-between;margin-bottom:4px}
+.ctx-key{font-size:12px;color:rgba(255,255,255,0.45)}
+.ctx-val{font-size:12px;color:rgba(255,255,255,0.8);font-weight:600}
+
+/* ═══════════ LOANS SCREEN ═══════════ */
+.loans-hero{
+  background:var(--ink);padding:22px 24px 20px;flex-shrink:0;position:relative;overflow:hidden;
+}
+.loans-hero::before{content:'';position:absolute;top:-30px;right:-30px;width:140px;height:140px;background:radial-gradient(circle,rgba(37,99,235,0.25) 0%,transparent 70%)}
+.loans-hero-label{font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px}
+.loans-hero-title{font-family:'Lora',serif;font-size:20px;color:white;font-weight:400;line-height:1.35;margin-bottom:8px}
+.loans-hero-title em{color:#60A5FA;font-style:italic}
+.loans-hero-sub{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.6}
+
+/* FILTER ROW */
+.filter-row{display:flex;gap:8px;padding:12px 16px 4px;overflow-x:auto;scrollbar-width:none;flex-shrink:0}
+.filter-row::-webkit-scrollbar{display:none}
+.ftag{background:var(--paper-2);border:1px solid var(--line);border-radius:20px;padding:6px 14px;font-size:12px;font-weight:500;color:var(--ink-2);white-space:nowrap;cursor:pointer;transition:all 0.15s}
+.ftag.active{background:var(--s);color:white;border-color:var(--s)}
+
+/* ═══════════ STORY ═══════════ */
+.story-header{background:var(--ink);padding:24px 24px 20px;flex-shrink:0;position:relative;overflow:hidden}
+.story-header::before{content:'';position:absolute;bottom:-40px;right:-40px;width:160px;height:160px;background:radial-gradient(circle,rgba(232,119,34,0.2) 0%,transparent 70%)}
+.story-header-label{font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px}
+.story-header-name{font-family:'Lora',serif;font-size:24px;color:white;font-weight:400;margin-bottom:4px}
+.story-header-name em{color:var(--s);font-style:italic}
+.story-header-sub{font-size:13px;color:rgba(255,255,255,0.45)}
+
+.persona-block{margin:12px 16px;background:white;border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+.persona-tag{font-size:10px;color:var(--s);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px}
+.persona-title{font-family:'Lora',serif;font-size:20px;color:var(--ink);margin-bottom:8px}
+.persona-desc{font-size:13px;color:var(--ink-2);line-height:1.65;margin-bottom:12px}
+.persona-traits{display:flex;flex-wrap:wrap;gap:6px}
+.ptag{background:var(--paper-2);border-radius:20px;padding:5px 12px;font-size:12px;color:var(--ink-2);font-weight:500}
+
+.story-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 16px 10px}
+.sstat{background:white;border:1px solid var(--line);border-radius:14px;padding:14px}
+.sstat-val{font-family:'Lora',serif;font-size:22px;color:var(--ink);margin-bottom:2px}
+.sstat-lbl{font-size:11px;color:var(--ink-3);line-height:1.4;margin-bottom:4px}
+.sstat-trend{font-size:11px;color:var(--gn);font-weight:600}
+
+/* DREAM CARD — Papaji's dream */
+.dream-card{
+  margin:0 16px 10px;
+  background:linear-gradient(135deg,#1A0F08,#2A1810);
+  border-radius:var(--radius);
+  padding:20px;
+  border:1px solid rgba(232,119,34,0.15);
+  position:relative;overflow:hidden;
+}
+.dream-card::before{content:'';position:absolute;top:-30px;right:-30px;width:120px;height:120px;background:radial-gradient(circle,rgba(232,119,34,0.15) 0%,transparent 70%)}
+.dream-label{font-size:10px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
+.dream-text{font-family:'Lora',serif;font-size:16px;color:white;line-height:1.55;font-style:italic;margin-bottom:12px}
+.dream-text em{color:var(--s)}
+.dream-sub{font-size:12px;color:rgba(255,255,255,0.45);line-height:1.5}
+
+/* JOURNAL */
+.journal-entry{margin:0 16px 8px;background:var(--paper-2);border-radius:14px;padding:14px 16px;border-left:3px solid var(--s)}
+.je-date{font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px}
+.je-text{font-size:13px;color:var(--ink-2);line-height:1.65}
+.je-text strong{color:var(--ink);font-weight:600}
+
+/* OVERLAY */
+.overlay{display:none;position:absolute;inset:0;background:rgba(20,14,8,0.75);z-index:100;align-items:flex-end}
+.overlay.show{display:flex}
+.overlay-sheet{background:var(--paper);border-radius:28px 28px 0 0;padding:24px;width:100%}
+.osh-handle{width:36px;height:4px;background:var(--paper-3);border-radius:2px;margin:0 auto 20px}
+.osh-label{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
+.osh-title{font-family:'Lora',serif;font-size:22px;color:var(--ink);font-weight:400;margin-bottom:6px}
+.osh-amount{font-family:'Lora',serif;font-size:36px;color:var(--ink);font-weight:400;margin-bottom:2px}
+.osh-item{font-size:14px;color:var(--ink-3);margin-bottom:16px}
+.osh-sarathy{background:var(--s-warm);border-radius:14px;padding:14px;margin-bottom:16px}
+.osh-from{font-size:10px;color:var(--s);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px}
+.osh-msg{font-size:13px;color:var(--ink-2);line-height:1.65}
+.osh-btns{display:flex;gap:10px}
+.osh-yes{flex:1;background:var(--gn);color:white;border:none;border-radius:12px;padding:14px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif}
+.osh-no{flex:1;background:var(--paper-2);color:var(--ink);border:none;border-radius:12px;padding:14px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif}
+
+/* Loan detail overlay */
+.loan-overlay-body{background:var(--paper);border-radius:28px 28px 0 0;padding:24px 24px 30px;width:100%;max-height:75vh;overflow-y:auto}
+.lo-bank{font-size:12px;color:var(--ink-3);margin-bottom:4px}
+.lo-name{font-family:'Lora',serif;font-size:20px;color:var(--ink);margin-bottom:16px}
+.lo-rate-big{font-family:'Lora',serif;font-size:42px;color:var(--gn);line-height:1;margin-bottom:4px}
+.lo-rate-sub{font-size:13px;color:var(--ink-3);margin-bottom:18px}
+.lo-detail-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line)}
+.lo-detail-row:last-of-type{border-bottom:none}
+.lo-dk{font-size:13px;color:var(--ink-3)}
+.lo-dv{font-size:13px;font-weight:700;color:var(--ink);text-align:right}
+.lo-apply{width:100%;background:var(--s);color:white;border:none;border-radius:14px;padding:16px;font-size:15px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;margin-top:18px}
+.lo-sarathy{background:var(--s-warm);border-radius:14px;padding:14px;margin-top:14px;margin-bottom:6px}
+.lo-sarathy-lbl{font-size:10px;color:var(--s);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:5px}
+.lo-sarathy-txt{font-size:13px;color:var(--ink-2);line-height:1.65}
 </style>
 </head>
 <body>
 <div class="phone">
 
-<!-- HOME -->
-<div class="screen active" id="screen-home">
-  <div class="sb"><span class="t">9:41</span><div class="ic"><i class="ti ti-wifi"></i><i class="ti ti-battery"></i></div></div>
-  <div class="sc">
-    <div class="gr"><p class="nm">Good morning, Aashmiin ✦</p><p class="sb2">Thursday · May 28 · SGD $1,247 available</p></div>
-    <div class="ms org" onclick="window.open('https://creator.voiceflow.com/share/6a16b775241a010e88134176/environment/main/draft','_blank')">
-      <div class="mic lo"><i class="ti ti-message-circle"></i></div>
-      <div class="mt"><p class="w">How are you feeling about money today?</p><span class="w">Sarathy is here — tap to check in</span></div>
-      <i class="ti ti-chevron-right" style="color:rgba(255,255,255,0.7);font-size:18px;"></i>
-    </div>
-    <div class="mg">
-      <div class="mc"><div class="lb">This Month In</div><div class="am">$2,400</div><div class="sb3 gn">↑ Allowance received</div></div>
-      <div class="mc"><div class="lb">Spent So Far</div><div class="am">$1,153</div><div class="sb3 rd">↑ $180 vs last month</div><div class="bb"><div class="bf" style="width:48%"></div></div></div>
-      <div class="mc"><div class="lb">Remaining</div><div class="am">$1,247</div><div class="sb3 gn">On track ✓</div></div>
-      <div class="mc"><div class="lb">Goals Saved</div><div class="am">$1,785</div><div class="sb3 mu">across 2 goals</div></div>
-    </div>
-    <div class="ms wh" onclick="showPause()">
-      <div class="mic ti"><i class="ti ti-hand-stop"></i></div>
-      <div class="mt"><p class="d">Pause Button active</p><span class="m">Sarathy checks in before purchases over $50</span></div>
-      <i class="ti ti-chevron-right" style="color:var(--mu);font-size:18px;"></i>
-    </div>
-    <div class="sl" style="margin-top:10px;">Mood–Money Mirror</div>
-    <div class="card mrc">
-      <p class="mi">You spent <strong>$312 more on food delivery</strong> in weeks when you checked in feeling stressed. Last month that was 3 weeks in a row.</p>
-      <div style="display:flex;gap:10px;align-items:center;"><div class="mt2"><i class="ti ti-sparkles" style="font-size:12px;"></i> Sarathy noticed</div><span class="ml" onclick="window.open('https://creator.voiceflow.com/share/6a16b775241a010e88134176/environment/main/draft','_blank')">Talk about it →</span></div>
-    </div>
-    <div class="sl">Sarathy alerts</div>
-    <div style="padding:0 16px 4px;display:flex;flex-direction:column;gap:8px;">
-      <div style="background:var(--rdb);border:1px solid #FECDD3;border-radius:12px;padding:12px;display:flex;gap:10px;align-items:center;cursor:pointer;" onclick="go('goals')">
-        <i class="ti ti-shield-exclamation" style="color:var(--rd);font-size:18px;flex-shrink:0;"></i>
-        <p style="font-size:13px;color:var(--tx);flex:1;">Emergency fund covers <strong style="color:var(--rd);">1.8 months</strong> — target is 6.</p>
-        <i class="ti ti-chevron-right" style="color:var(--mu);font-size:16px;"></i>
+<!-- ═══════════════════════════════════
+     HOME SCREEN
+═══════════════════════════════════ -->
+<div class="screen active" id="s-home">
+  <div class="status"><span class="status-time">9:41</span><div class="status-icons">📶 🔋</div></div>
+  <div class="scroll">
+    <!-- HERO MORNING MESSAGE -->
+    <div class="hero-card">
+      <div class="hero-label">Sarathy · Good morning</div>
+      <div class="hero-greet">Navnit bhai, <em>sab theek hai?</em></div>
+      <div class="hero-msg">
+        I know you've been carrying something big. <strong>Pacco Industrial's future. Papaji's dream. ₹1 crore.</strong> 
+        A lot to hold. I looked at your numbers last night — I think I can help you see this clearly.
       </div>
-      <div style="background:var(--blb);border:1px solid #BFDBFE;border-radius:12px;padding:12px;display:flex;gap:10px;align-items:center;cursor:pointer;" onclick="go('nri')">
-        <i class="ti ti-heart-rate-monitor" style="color:var(--bl);font-size:18px;flex-shrink:0;"></i>
-        <p style="font-size:13px;color:var(--tx);flex:1;">You may be <strong style="color:var(--bl);">underinsured</strong> in Singapore.</p>
-        <i class="ti ti-chevron-right" style="color:var(--mu);font-size:16px;"></i>
-      </div>
+      <button class="hero-cta" onclick="openChat('morning')">
+        <svg viewBox="0 0 24 24" width="16" height="16"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Talk to Sarathy about this
+      </button>
     </div>
-    <div class="sl" style="margin-top:10px;">Quick actions</div>
-    <div class="qa">
-      <button class="qb" onclick="go('goals')"><i class="ti ti-target"></i><span>Goals</span></button>
-      <button class="qb" onclick="go('invest')"><i class="ti ti-trending-up"></i><span>Invest</span></button>
-      <button class="qb" onclick="go('nri')"><i class="ti ti-map-pin"></i><span>NRI Guide</span></button>
-      <button class="qb" onclick="window.open('https://creator.voiceflow.com/share/6a16b775241a010e88134176/environment/main/draft','_blank')"><i class="ti ti-message-circle"></i><span>Ask Sarathy</span></button>
-    </div>
-  </div>
-  <nav class="nb">
-    <button class="ni on" onclick="go('home')"><i class="ti ti-home"></i><span>Home</span></button>
-    <button class="ni" onclick="window.open('https://creator.voiceflow.com/share/6a16b775241a010e88134176/environment/main/draft','_blank')"><i class="ti ti-message-circle"></i><span>Sarathy</span></button>
-    <button class="ni" onclick="go('goals')"><i class="ti ti-target"></i><span>Goals</span></button>
-    <button class="ni" onclick="go('nri')"><i class="ti ti-map-pin"></i><span>NRI</span></button>
-    <button class="ni" onclick="go('invest')"><i class="ti ti-trending-up"></i><span>Invest</span></button>
-  </nav>
-  <div class="po" id="pause-overlay">
-    <div class="pm">
-      <p class="pl">Pause Button</p><h2>Before you buy this—</h2>
-      <div class="pa">SGD $89.90</div><div class="pi">ASOS — Summer dress haul</div>
-      <div class="ps"><p class="pf">Sarathy says</p><p>You checked in feeling stressed this morning. I've noticed you spend about $180 more on shopping in tough weeks. Still want to go ahead? That's completely okay — I just wanted you to know.</p></div>
-      <div class="pb2"><button class="by" onclick="hidePause()">Yes, buy it</button><button class="bn2" onclick="hidePause()">Actually, no</button></div>
-    </div>
-  </div>
-</div>
 
-<!-- CHAT -->
-<div class="screen" id="screen-chat">
-  <div class="sb"><span class="t">9:41</span><div class="ic"><i class="ti ti-wifi"></i><i class="ti ti-battery"></i></div></div>
-  <div class="chh"><div class="ca">S</div><div class="ci"><p>Sarathy</p><span><span class="do"></span>Always here for you</span></div></div>
-  <div class="cm" id="chat-messages">
-    <div class="msg ag">
-      <div class="av">S</div>
+    <!-- BANK BALANCE -->
+    <div class="sec-head">Your money, right now</div>
+    <div class="bank-card">
+      <div class="bank-tag">Linked accounts · Live</div>
+      <div class="bank-name">Pacco Industrial Corp <span>Current A/C</span></div>
+      <div class="bank-balance"><em>₹</em>34,72,500</div>
+      <div class="bank-sub">As of today · Punjab National Bank, Rohini</div>
+      <div class="bank-row">
+        <div class="bank-stat">
+          <div class="bank-stat-label">This Month In</div>
+          <div class="bank-stat-val green">+₹6.2L</div>
+        </div>
+        <div class="bank-stat">
+          <div class="bank-stat-label">Avg Monthly</div>
+          <div class="bank-stat-val orange">₹5.4L</div>
+        </div>
+        <div class="bank-stat">
+          <div class="bank-stat-label">Credit Score</div>
+          <div class="bank-stat-val" style="color:#60A5FA">781</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- THE BIG DECISION -->
+    <div class="sec-head">The big decision</div>
+    <div class="decision-card" onclick="openChat('machine_decision')">
+      <div class="dc-badge">⚙️ Active dilemma</div>
+      <div class="dc-title">The carburetor machine — <em>₹1 crore</em></div>
+      <div class="dc-body">
+        This machine makes you the biggest carburetor supplier in India. But ₹1 crore is real money. Sarathy has run the numbers. The answer might surprise you.
+      </div>
+      <div class="dc-pills">
+        <div class="dc-pill hot">ROI: 28 months</div>
+        <div class="dc-pill hot">Market share: +40%</div>
+        <div class="dc-pill">Best rate found: 9.2%</div>
+      </div>
+      <div class="dc-action">
+        See Sarathy's full analysis
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+    </div>
+
+    <!-- BEST LOAN PREVIEW -->
+    <div class="sec-head">Best loans near you in Delhi</div>
+    <div class="sarathy-tip">
+      <div class="tip-av">S</div>
       <div>
-        <div class="bu">Hey — I'm Sarathy. Think of me as your financial companion. Not a bank. Not an advisor. Just someone who genuinely gets it and is always on your side.<br><br>When you think about money right now — what's the first feeling that comes up?</div>
-        <div class="cs">
-          <button class="cb" onclick="pick(this,'Stressed or overwhelmed')">Stressed or overwhelmed</button>
-          <button class="cb" onclick="pick(this,'Confused — I don\'t know where I stand')">Confused — don't know where I stand</button>
-          <button class="cb" onclick="pick(this,'Okay but could be doing better')">Okay but could be better</button>
-          <button class="cb" onclick="pick(this,'Actually pretty good')">Actually pretty good</button>
-        </div>
+        <div class="tip-label">Sarathy found</div>
+        <div class="tip-body">I searched <strong>11 lenders in Delhi NCR</strong> for an SME machinery loan of ₹1 crore. Here are the three I'd actually tell my own family to consider.</div>
       </div>
     </div>
+
+    <!-- LOAN CARD 1 — BEST -->
+    <div class="loan-card best" onclick="showLoanDetail('sidbi')">
+      <div class="loan-best-badge">⭐ Sarathy's pick</div>
+      <div class="loan-bank"><div class="loan-bank-dot" style="background:#2D7A4F"></div>SIDBI — Small Industries Dev Bank</div>
+      <div class="loan-name">MSME Machinery Loan</div>
+      <div class="loan-rate-row">
+        <div class="loan-rate" style="color:var(--gn)">9.2%</div>
+        <div class="loan-rate-unit">p.a. · Govt-backed</div>
+      </div>
+      <div class="loan-details">
+        <div class="ld-chip g">No collateral</div>
+        <div class="ld-chip g">7-yr tenure</div>
+        <div class="ld-chip">Delhi branch</div>
+        <div class="ld-chip">3 day approval</div>
+      </div>
+      <div class="loan-emi">EMI: <strong>₹1,41,200/mo</strong> · Total interest: <strong>₹18.4L</strong></div>
+    </div>
+
+    <!-- LOAN CARD 2 -->
+    <div class="loan-card" onclick="showLoanDetail('hdfc')">
+      <div class="loan-bank"><div class="loan-bank-dot" style="background:#004C8F"></div>HDFC Bank — Rohini Branch</div>
+      <div class="loan-name">Business Growth Loan</div>
+      <div class="loan-rate-row">
+        <div class="loan-rate">11.5%</div>
+        <div class="loan-rate-unit">p.a. · Private bank</div>
+      </div>
+      <div class="loan-details">
+        <div class="ld-chip">Collateral req.</div>
+        <div class="ld-chip">5-yr tenure</div>
+        <div class="ld-chip">Same day decision</div>
+      </div>
+      <div class="loan-emi">EMI: <strong>₹2,19,800/mo</strong> · Total interest: <strong>₹31.9L</strong></div>
+    </div>
+
+    <!-- LOAN CARD 3 -->
+    <div class="loan-card" onclick="showLoanDetail('pnb')">
+      <div class="loan-bank"><div class="loan-bank-dot" style="background:#E87722"></div>Punjab National Bank — Your bank</div>
+      <div class="loan-name">Term Loan for Machinery</div>
+      <div class="loan-rate-row">
+        <div class="loan-rate">10.75%</div>
+        <div class="loan-rate-unit">p.a. · Relationship rate</div>
+      </div>
+      <div class="loan-details">
+        <div class="ld-chip g">Existing customer</div>
+        <div class="ld-chip">6-yr tenure</div>
+        <div class="ld-chip">Fast-track</div>
+      </div>
+      <div class="loan-emi">EMI: <strong>₹1,88,400/mo</strong> · Total interest: <strong>₹25.6L</strong></div>
+    </div>
+
+    <div class="sarathy-tip" style="margin-top:4px">
+      <div class="tip-av">S</div>
+      <div>
+        <div class="tip-label">The bottom line</div>
+        <div class="tip-body">Going with SIDBI vs HDFC saves you <strong>₹13.5 lakhs in interest</strong> over the loan period. That's almost a second machine's down payment.</div>
+      </div>
+    </div>
+
+    <div style="height:20px"></div>
   </div>
-  <div class="cib">
-    <textarea class="ci2" id="chat-input" placeholder="Message Sarathy..." rows="1" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();send();}" oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,80)+'px'"></textarea>
-    <button class="sb4" id="send-btn" onclick="send()"><i class="ti ti-send"></i></button>
+  <nav class="nav">
+    <button class="nav-btn on" onclick="go('s-home')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Home</span></button>
+    <button class="nav-btn" onclick="openChat('home_checkin')"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Sarathy</span></button>
+    <button class="nav-btn" onclick="go('s-loans')"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg><span>Loans</span></button>
+    <button class="nav-btn" onclick="go('s-story')"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg><span>Navnit's Story</span></button>
+  </nav>
+
+  <!-- LOAN DETAIL OVERLAY -->
+  <div class="overlay" id="loan-overlay">
+    <div class="loan-overlay-body" id="loan-overlay-body">
+      <!-- filled dynamically -->
+    </div>
   </div>
-  <nav class="nb">
-    <button class="ni" onclick="go('home')"><i class="ti ti-home"></i><span>Home</span></button>
-    <button class="ni on" onclick="window.open('https://creator.voiceflow.com/share/6a16b775241a010e88134176/environment/main/draft','_blank')"><i class="ti ti-message-circle"></i><span>Sarathy</span></button>
-    <button class="ni" onclick="go('goals')"><i class="ti ti-target"></i><span>Goals</span></button>
-    <button class="ni" onclick="go('nri')"><i class="ti ti-map-pin"></i><span>NRI</span></button>
-    <button class="ni" onclick="go('invest')"><i class="ti ti-trending-up"></i><span>Invest</span></button>
+</div>
+
+<!-- ═══════════════════════════════════
+     CHAT SCREEN
+═══════════════════════════════════ -->
+<div class="screen" id="s-chat">
+  <div class="status"><span class="status-time">9:41</span><div class="status-icons">📶 🔋</div></div>
+  <div class="chat-header">
+    <div class="chat-avatar">S</div>
+    <div class="chat-info">
+      <p>Sarathy</p>
+      <span><span class="online-dot"></span>Always with you, bhai</span>
+    </div>
+    <button class="chat-back" onclick="go('s-home')">← Back</button>
+  </div>
+  <div class="chat-msgs" id="chat-msgs"></div>
+  <div class="chat-input-row">
+    <textarea class="chat-textarea" id="chat-inp" placeholder="Bolo Navnit bhai…" rows="1"
+      onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();send()}"
+      oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,80)+'px'"></textarea>
+    <button class="send-btn" id="send-btn" onclick="send()">
+      <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    </button>
+  </div>
+  <nav class="nav">
+    <button class="nav-btn" onclick="go('s-home')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Home</span></button>
+    <button class="nav-btn on" onclick="openChat('home_checkin')"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Sarathy</span></button>
+    <button class="nav-btn" onclick="go('s-loans')"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg><span>Loans</span></button>
+    <button class="nav-btn" onclick="go('s-story')"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg><span>My Story</span></button>
   </nav>
 </div>
 
-<!-- GOALS -->
-<div class="screen" id="screen-goals">
-  <div class="sb"><span class="t">9:41</span><div class="ic"><i class="ti ti-wifi"></i><i class="ti ti-battery"></i></div></div>
-  <div class="sh"><h1>Goals & Safety Net</h1><p>Dreams, emergencies, and debt — all in one place</p></div>
-  <div class="sc">
-    <div class="sl">Emergency Fund</div>
-    <div style="background:linear-gradient(135deg,var(--gnb) 0%,#DCFCE7 100%);border:1px solid #BBF7D0;border-radius:16px;padding:16px;margin:0 16px 12px;">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
-        <div>
-          <p style="font-size:12px;color:#15803D;font-weight:500;">Your safety net</p>
-          <p style="font-family:'DM Serif Display',serif;font-size:28px;color:var(--gn);margin:4px 0;">SGD $3,240</p>
-          <p style="font-size:11px;color:#15803D;"><span id="ef-months">2.2</span> months covered · target: 6 months</p>
-        </div>
-        <div style="background:var(--gnb);border:1px solid #BBF7D0;border-radius:10px;padding:8px 12px;text-align:center;">
-          <p style="font-size:18px;font-weight:700;color:var(--gn);">37%</p>
-          <p style="font-size:10px;color:#15803D;">of goal</p>
-        </div>
-      </div>
-      <div style="height:6px;background:#BBF7D0;border-radius:3px;margin:12px 0 6px;overflow:hidden;"><div style="height:100%;width:37%;background:var(--gn);border-radius:3px;"></div></div>
-      <div style="display:flex;justify-content:space-between;font-size:11px;color:#15803D;margin-bottom:10px;"><span>Current: $3,240</span><span>Target: SGD $<span id="ef-need">8,700</span></span></div>
-      <div style="background:rgba(255,255,255,0.6);border-radius:10px;padding:10px;">
-        <p style="font-size:12px;color:#15803D;font-weight:500;margin-bottom:4px;">Your monthly expenses: SGD $<span id="ef-exp">1,450</span></p>
-        <input type="range" style="width:100%;accent-color:var(--gn);display:block;margin:6px 0;" id="ef-slider" min="500" max="3000" value="1450" step="50" oninput="updateEF(this.value)">
-        <p style="font-size:11px;color:#15803D;">Drag to adjust → need 6x = SGD $<span id="ef-need2">8,700</span></p>
-      </div>
-      <button onclick="window.open('https://creator.voiceflow.com/share/6a16b775241a010e88134176/environment/main/draft','_blank')" style="margin-top:12px;background:var(--gn);color:white;border:none;border-radius:10px;padding:10px 16px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;width:100%;display:flex;align-items:center;justify-content:center;gap:6px;"><i class="ti ti-plus"></i> Add to emergency fund</button>
-    </div>
-    <div class="sl">Debt Pulse</div>
-    <div style="background:linear-gradient(135deg,var(--rdb) 0%,#FFE4E6 100%);border:1px solid #FECDD3;border-radius:16px;padding:16px;margin:0 16px 12px;">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
-        <p style="font-size:13px;font-weight:600;color:var(--dk);">Your current debt</p>
-        <div style="background:var(--rd);color:white;border-radius:20px;padding:3px 10px;font-size:11px;font-weight:600;">SGD $4,200 total</div>
-      </div>
-      <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:0.5px solid #FECDD3;font-size:13px;"><span style="color:var(--dk);">Student credit card</span><span style="color:var(--rd);font-weight:600;">$1,800</span></div>
-      <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:0.5px solid #FECDD3;font-size:13px;"><span style="color:var(--dk);">Phone installment plan</span><span style="color:var(--rd);font-weight:600;">$1,200</span></div>
-      <div style="display:flex;justify-content:space-between;padding:8px 0;font-size:13px;"><span style="color:var(--dk);">Study loan (interest-free)</span><span style="color:var(--rd);font-weight:600;">$1,200</span></div>
-      <p style="font-size:12px;color:#9F1239;margin-top:10px;line-height:1.5;">Sarathy's tip: Pay the credit card first — it's the only one charging you interest. Even $50 extra per month saves you $180 this year.</p>
-      <button onclick="window.open('https://creator.voiceflow.com/share/6a16b775241a010e88134176/environment/main/draft','_blank')" style="margin-top:10px;background:white;color:var(--rd);border:1px solid #FECDD3;border-radius:10px;padding:9px 14px;font-size:12px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;gap:6px;"><i class="ti ti-message-circle"></i> Talk to Sarathy about debt</button>
-    </div>
-    <div class="sl">Your Goals</div>
-    <div class="gc">
-      <div class="gt"><div><div class="gn2">✈️ Dream Goa Trip</div><div class="gct">Travel & Adventure</div></div><div class="gp">64%</div></div>
-      <div class="gam"><span>SGD <strong>$1,280</strong> saved</span><span>of SGD $2,000</span></div>
-      <div class="gb"><div class="gbf" style="width:64%"></div></div>
-      <button class="ga"><i class="ti ti-plus"></i> Add SGD $50</button>
-    </div>
-    <div class="gc">
-      <div class="gt"><div><div class="gn2">💻 New MacBook</div><div class="gct">Gadgets & Tech</div></div><div class="gp">25%</div></div>
-      <div class="gam"><span>SGD <strong>$505</strong> saved</span><span>of SGD $2,000</span></div>
-      <div class="gb"><div class="gbf" style="width:25%"></div></div>
-      <button class="ga"><i class="ti ti-plus"></i> Add SGD $50</button>
-    </div>
-    <button class="ngb"><i class="ti ti-plus"></i> Create new goal</button>
+<!-- ═══════════════════════════════════
+     LOANS SCREEN
+═══════════════════════════════════ -->
+<div class="screen" id="s-loans">
+  <div class="status"><span class="status-time">9:41</span><div class="status-icons">📶 🔋</div></div>
+  <div class="loans-hero">
+    <div class="loans-hero-label">Sarathy scanned · Delhi NCR</div>
+    <div class="loans-hero-title"><em>11 lenders</em> compared for Pacco Industrial</div>
+    <div class="loans-hero-sub">₹1 crore · Machinery loan · 5–7 year tenure · Your credit score: 781</div>
   </div>
-  <nav class="nb">
-    <button class="ni" onclick="go('home')"><i class="ti ti-home"></i><span>Home</span></button>
-    <button class="ni" onclick="window.open('https://creator.voiceflow.com/share/6a16b775241a010e88134176/environment/main/draft','_blank')"><i class="ti ti-message-circle"></i><span>Sarathy</span></button>
-    <button class="ni on" onclick="go('goals')"><i class="ti ti-target"></i><span>Goals</span></button>
-    <button class="ni" onclick="go('nri')"><i class="ti ti-map-pin"></i><span>NRI</span></button>
-    <button class="ni" onclick="go('invest')"><i class="ti ti-trending-up"></i><span>Invest</span></button>
+  <div class="filter-row">
+    <div class="ftag active">All</div>
+    <div class="ftag">Govt / MSME</div>
+    <div class="ftag">Private Banks</div>
+    <div class="ftag">NBFCs</div>
+    <div class="ftag">No Collateral</div>
+  </div>
+  <div class="scroll" style="padding-top:4px">
+    <div class="sarathy-tip">
+      <div class="tip-av">S</div>
+      <div>
+        <div class="tip-label">Why this matters</div>
+        <div class="tip-body">A 2.3% rate difference on ₹1 crore means <strong>₹13.5 lakh more or less paid</strong> over 7 years. That's real money, Navnit bhai.</div>
+      </div>
+    </div>
+
+    <!-- ALL LOAN CARDS -->
+    <div class="loan-card best" onclick="showLoanDetail('sidbi')">
+      <div class="loan-best-badge">⭐ Sarathy's pick</div>
+      <div class="loan-bank"><div class="loan-bank-dot" style="background:#2D7A4F"></div>SIDBI — Connaught Place, Delhi</div>
+      <div class="loan-name">MSME Machinery Loan (CGTMSE)</div>
+      <div class="loan-rate-row"><div class="loan-rate" style="color:var(--gn)">9.2%</div><div class="loan-rate-unit">p.a. · Fixed · Govt-backed</div></div>
+      <div class="loan-details">
+        <div class="ld-chip g">No collateral</div><div class="ld-chip g">7-yr tenure</div><div class="ld-chip">2.5% processing</div><div class="ld-chip g">Subsidy eligible</div>
+      </div>
+      <div class="loan-emi">EMI: <strong>₹1,41,200/mo</strong> · Total interest: <strong>₹18.4L</strong></div>
+    </div>
+
+    <div class="loan-card" onclick="showLoanDetail('pnb')">
+      <div class="loan-bank"><div class="loan-bank-dot" style="background:#E87722"></div>Punjab National Bank — Rohini, Delhi</div>
+      <div class="loan-name">Term Loan for Machinery (Existing Customer)</div>
+      <div class="loan-rate-row"><div class="loan-rate">10.75%</div><div class="loan-rate-unit">p.a. · Floating</div></div>
+      <div class="loan-details">
+        <div class="ld-chip g">Your bank</div><div class="ld-chip">6-yr tenure</div><div class="ld-chip">1.5% processing</div><div class="ld-chip g">Fast-track 48hr</div>
+      </div>
+      <div class="loan-emi">EMI: <strong>₹1,88,400/mo</strong> · Total interest: <strong>₹25.6L</strong></div>
+    </div>
+
+    <div class="loan-card" onclick="showLoanDetail('sbi')">
+      <div class="loan-bank"><div class="loan-bank-dot" style="background:#3B5998"></div>State Bank of India — Pitampura, Delhi</div>
+      <div class="loan-name">SBI SME Advantage Loan</div>
+      <div class="loan-rate-row"><div class="loan-rate">10.9%</div><div class="loan-rate-unit">p.a. · Floating</div></div>
+      <div class="loan-details">
+        <div class="ld-chip">Collateral req.</div><div class="ld-chip">6-yr tenure</div><div class="ld-chip g">Govt bank</div>
+      </div>
+      <div class="loan-emi">EMI: <strong>₹1,91,200/mo</strong> · Total interest: <strong>₹27.7L</strong></div>
+    </div>
+
+    <div class="loan-card" onclick="showLoanDetail('hdfc')">
+      <div class="loan-bank"><div class="loan-bank-dot" style="background:#004C8F"></div>HDFC Bank — Rohini Sector 9, Delhi</div>
+      <div class="loan-name">Business Growth Loan</div>
+      <div class="loan-rate-row"><div class="loan-rate">11.5%</div><div class="loan-rate-unit">p.a. · Fixed · Private bank</div></div>
+      <div class="loan-details">
+        <div class="ld-chip">Collateral req.</div><div class="ld-chip">5-yr tenure</div><div class="ld-chip">Same day decision</div>
+      </div>
+      <div class="loan-emi">EMI: <strong>₹2,19,800/mo</strong> · Total interest: <strong>₹31.9L</strong></div>
+    </div>
+
+    <div class="loan-card" onclick="showLoanDetail('icici')">
+      <div class="loan-bank"><div class="loan-bank-dot" style="background:#B21F24"></div>ICICI Bank — Netaji Subhash Place, Delhi</div>
+      <div class="loan-name">ICICI Business Instalment Loan</div>
+      <div class="loan-rate-row"><div class="loan-rate">12.0%</div><div class="loan-rate-unit">p.a. · Fixed</div></div>
+      <div class="loan-details">
+        <div class="ld-chip g">No collateral</div><div class="ld-chip">5-yr tenure</div><div class="ld-chip">Digital process</div>
+      </div>
+      <div class="loan-emi">EMI: <strong>₹2,22,400/mo</strong> · Total interest: <strong>₹33.4L</strong></div>
+    </div>
+
+    <!-- EMI Comparison Visual -->
+    <div class="sec-head">Monthly burden comparison</div>
+    <div class="emi-timeline">
+      <div class="eti-title">How much leaves your account every month</div>
+      <div class="eti-sub">Current monthly revenue: ~₹5.4L avg</div>
+      <div class="eti-bar-wrap">
+        <div class="eti-label"><span>SIDBI (Best)</span><span>₹1.41L · 26% of revenue</span></div>
+        <div class="eti-bar"><div class="eti-fill green" style="width:26%"></div></div>
+      </div>
+      <div class="eti-bar-wrap">
+        <div class="eti-label"><span>PNB (Your bank)</span><span>₹1.88L · 35% of revenue</span></div>
+        <div class="eti-bar"><div class="eti-fill orange" style="width:35%"></div></div>
+      </div>
+      <div class="eti-bar-wrap">
+        <div class="eti-label"><span>HDFC</span><span>₹2.19L · 41% of revenue</span></div>
+        <div class="eti-bar"><div class="eti-fill blue" style="width:41%"></div></div>
+      </div>
+      <div style="margin-top:12px;font-size:12px;color:var(--gn);font-weight:600">✓ Even at SIDBI's EMI, you keep ₹4L/mo free — very manageable.</div>
+    </div>
+
+    <div style="height:20px"></div>
+  </div>
+  <nav class="nav">
+    <button class="nav-btn" onclick="go('s-home')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Home</span></button>
+    <button class="nav-btn" onclick="openChat('home_checkin')"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Sarathy</span></button>
+    <button class="nav-btn on" onclick="go('s-loans')"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg><span>Loans</span></button>
+    <button class="nav-btn" onclick="go('s-story')"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg><span>My Story</span></button>
+  </nav>
+
+  <div class="overlay" id="loan-overlay-2">
+    <div class="loan-overlay-body" id="loan-overlay-body-2"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     MY STORY SCREEN
+═══════════════════════════════════ -->
+<div class="screen" id="s-story">
+  <div class="status"><span class="status-time">9:41</span><div class="status-icons">📶 🔋</div></div>
+  <div class="story-header">
+    <div class="story-header-label">Your financial identity</div>
+    <div class="story-header-name"><em>Navnit Singh</em>'s story</div>
+    <div class="story-header-sub">Pacco Industrial Corporation · Delhi · Member since 2024</div>
+  </div>
+  <div class="scroll">
+    <div class="persona-block">
+      <div class="persona-tag">✦ Sarathy identified</div>
+      <div class="persona-title">The Factory Patriarch</div>
+      <div class="persona-desc">You built Pacco Industrial from the ground up. Consistent cashflow, disciplined operator, risk-aware but not risk-averse. You carry your father's ambitions alongside your own. That's rare — and it shows in every decision you make.</div>
+      <div class="persona-traits">
+        <div class="ptag">Cashflow positive</div>
+        <div class="ptag">Risk-aware</div>
+        <div class="ptag">Legacy-driven</div>
+        <div class="ptag">Decisive</div>
+        <div class="ptag">Market leader potential</div>
+      </div>
+    </div>
+
+    <div class="sec-head">Pacco Industrial's numbers</div>
+    <div class="story-stat-grid">
+      <div class="sstat"><div class="sstat-val">₹34.7L</div><div class="sstat-lbl">Current bank balance</div><div class="sstat-trend">↑ +₹6.2L this month</div></div>
+      <div class="sstat"><div class="sstat-val">781</div><div class="sstat-lbl">Credit score</div><div class="sstat-trend">Excellent · Top 20%</div></div>
+      <div class="sstat"><div class="sstat-val">₹5.4L</div><div class="sstat-lbl">Avg monthly revenue</div><div class="sstat-trend">Stable · 18mo trend</div></div>
+      <div class="sstat"><div class="sstat-val">28mo</div><div class="sstat-lbl">Machine ROI breakeven</div><div class="sstat-trend">Strong for industry</div></div>
+    </div>
+
+    <!-- PAPAJI'S DREAM CARD -->
+    <div class="sec-head">Where this began</div>
+    <div class="dream-card">
+      <div class="dream-label">Papaji's dream · Sarathy remembers</div>
+      <div class="dream-text">"The biggest carburetor supplier in the country — <em>that was supposed to be us.</em>"</div>
+      <div class="dream-sub">The machine your father dreamed of is now available. The numbers say you can do it. Sarathy thinks Papaji would call this the right moment.</div>
+    </div>
+
+    <!-- SARATHY'S JOURNAL -->
+    <div class="sec-head">Sarathy's journal about Navnit</div>
+    <div class="journal-entry">
+      <div class="je-date">Today · 9:41am</div>
+      <div class="je-text">Navnit has been unusually quiet this week. The ₹1 crore decision is sitting heavy. But I've looked at his books — <strong>he's actually in a stronger position than he realizes.</strong> His cashflow can handle the SIDBI EMI comfortably.</div>
+    </div>
+    <div class="journal-entry">
+      <div class="je-date">3 days ago</div>
+      <div class="je-text">Revenue up 14% this quarter. Navnit mentioned competition is getting tighter in the carburetor market. <strong>The machine isn't just a growth play — it's a moat.</strong> Without it, someone else gets there first.</div>
+    </div>
+    <div class="journal-entry">
+      <div class="je-date">Last week</div>
+      <div class="je-text">Credit score at 781 is exceptional for an SME at this scale. SIDBI's CGTMSE scheme was <strong>literally designed for someone in exactly Navnit's position.</strong> No collateral, government backing, lowest rate in the market.</div>
+    </div>
+
+    <div style="height:20px"></div>
+  </div>
+  <nav class="nav">
+    <button class="nav-btn" onclick="go('s-home')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Home</span></button>
+    <button class="nav-btn" onclick="openChat('home_checkin')"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Sarathy</span></button>
+    <button class="nav-btn" onclick="go('s-loans')"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg><span>Loans</span></button>
+    <button class="nav-btn on" onclick="go('s-story')"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg><span>My Story</span></button>
   </nav>
 </div>
 
-<!-- NRI -->
-<div class="screen" id="screen-nri">
-  <div class="sb"><span class="t">9:41</span><div class="ic"><i class="ti ti-wifi"></i><i class="ti ti-battery"></i></div></div>
-  <div class="sh"><h1>NRI Navigator</h1><p>Singapore's financial system, made simple for you</p></div>
-  <div class="sc">
-    <div class="ns">
-      <div class="nc"><div class="vl">0%</div><div class="lb2">Capital Gains Tax</div><div class="sv">Unique to Singapore ✓</div></div>
-      <div class="nc"><div class="vl">$8.05B</div><div class="lb2">NRI remittances/yr</div><div class="sv">Optimise yours →</div></div>
-    </div>
-    <div class="sl">Insurance Gap Check</div>
-    <div style="background:linear-gradient(135deg,var(--blb) 0%,#DBEAFE 100%);border:1px solid #BFDBFE;border-radius:16px;padding:16px;margin:0 16px 12px;">
-      <p style="font-size:13px;color:#1D4ED8;font-weight:500;margin-bottom:10px;">72% of students & NRIs in Singapore are underinsured. Are you?</p>
-      <div class="in-row"><span class="in-label">Health insurance (Singapore)</span><span class="in-badge no">Not confirmed</span></div>
-      <div class="in-row"><span class="in-label">MediShield Life</span><span class="in-badge na">EP holders: N/A</span></div>
-      <div class="in-row"><span class="in-label">Life insurance</span><span class="in-badge no">Not set up</span></div>
-      <div class="in-row"><span class="in-label">Home/contents insurance</span><span class="in-badge ok">Active</span></div>
-      <button onclick="window.open('https://creator.voiceflow.com/share/6a16b775241a010e88134176/environment/main/draft','_blank')" style="margin-top:12px;background:var(--bl);color:white;border:none;border-radius:10px;padding:10px 16px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;width:100%;display:flex;align-items:center;justify-content:center;gap:6px;"><i class="ti ti-message-circle"></i> Ask Sarathy about insurance options</button>
-    </div>
-    <div class="sl">Setup checklist</div>
-    <div class="card" style="padding:0;overflow:hidden;">
-      <div class="ns2"><div class="sn dn"><i class="ti ti-check" style="font-size:13px;"></i></div><div><div class="st">Open a local bank account</div><div class="sd">DBS, OCBC, or UOB — done in 15 mins with your passport and student pass.</div></div></div>
-      <div class="ns2"><div class="sn dn"><i class="ti ti-check" style="font-size:13px;"></i></div><div><div class="st">Set up PayNow</div><div class="sd">Link your NRIC or phone for instant free transfers.</div></div></div>
-      <div class="ns2"><div class="sn ac">3</div><div><div class="st">Open NRE account back home</div><div class="sd">Send Singapore → India tax-free. Sarathy walks you through it.</div><button class="sc2" onclick="window.open('https://creator.voiceflow.com/share/6a16b775241a010e88134176/environment/main/draft','_blank')"><i class="ti ti-message-circle" style="font-size:13px;"></i> Ask Sarathy how</button></div></div>
-      <div class="ns2"><div class="sn td2">4</div><div><div class="st">Understand 0% capital gains</div><div class="sd">Singapore doesn't tax investment profits. Here's how to use this legally.</div><button class="sc2" onclick="window.open('https://creator.voiceflow.com/share/6a16b775241a010e88134176/environment/main/draft','_blank')"><i class="ti ti-message-circle" style="font-size:13px;"></i> Learn with Sarathy</button></div></div>
-      <div class="ns2"><div class="sn td2">5</div><div><div class="st">Optimise your remittances</div><div class="sd">Wise and Instarem save most NRIs $80–$200/month vs bank transfers.</div><button class="sc2" onclick="window.open('https://creator.voiceflow.com/share/6a16b775241a010e88134176/environment/main/draft','_blank')"><i class="ti ti-message-circle" style="font-size:13px;"></i> Compare rates</button></div></div>
-    </div>
-    <div class="sl" style="margin-top:4px;">Share Sarathy</div>
-    <div class="share-card">
-      <h3>Know someone who just arrived?</h3>
-      <p>Send them this. Sarathy helped you figure out Singapore's financial system — now pass it on to a friend figuring it out alone.</p>
-      <button class="share-btn"><i class="ti ti-share"></i> Share my Sarathy referral</button>
-    </div>
-    <div style="height:16px;"></div>
-  </div>
-  <nav class="nb">
-    <button class="ni" onclick="go('home')"><i class="ti ti-home"></i><span>Home</span></button>
-    <button class="ni" onclick="window.open('https://creator.voiceflow.com/share/6a16b775241a010e88134176/environment/main/draft','_blank')"><i class="ti ti-message-circle"></i><span>Sarathy</span></button>
-    <button class="ni" onclick="go('goals')"><i class="ti ti-target"></i><span>Goals</span></button>
-    <button class="ni on" onclick="go('nri')"><i class="ti ti-map-pin"></i><span>NRI</span></button>
-    <button class="ni" onclick="go('invest')"><i class="ti ti-trending-up"></i><span>Invest</span></button>
-  </nav>
-</div>
-
-<!-- INVEST -->
-<div class="screen" id="screen-invest">
-  <div class="sb"><span class="t">9:41</span><div class="ic"><i class="ti ti-wifi"></i><i class="ti ti-battery"></i></div></div>
-  <div class="sh"><h1>Start Investing</h1><p>Simple first steps — no jargon, no overwhelm</p></div>
-  <div class="sc">
-    <div class="sl">SIP Calculator</div>
-    <div class="sip-card">
-      <h3>What does starting a SIP actually mean?</h3>
-      <p>A SIP means investing a small fixed amount every month — like a savings habit, but your money grows in the market. Most experts recommend this as the single best starting point for Gen Z.</p>
-      <div class="sip-calc">
-        <label>Monthly amount: SGD $<span id="sip-amt">100</span></label>
-        <input type="range" id="sip-slider" min="50" max="500" value="100" step="50" oninput="updateSIP()">
-        <label>Years investing: <span id="sip-yrs">10</span></label>
-        <input type="range" id="sip-yrs-slider" min="3" max="30" value="10" step="1" oninput="updateSIP()">
-        <div class="sip-result">
-          <div class="lbl">Your money grows to approximately</div>
-          <div class="big" id="sip-result">SGD $17,384</div>
-          <div class="lbl" style="margin-top:4px;">at 8% annual returns — index fund historical average</div>
-        </div>
-      </div>
-    </div>
-    <div class="sl">Where to start (Sarathy recommends)</div>
-    <div class="card" style="padding:4px 0;overflow:hidden;">
-      <div class="cmp-row">
-        <div class="cmp-ic" style="background:#EFF6FF;"><i class="ti ti-building-bank" style="color:#2563EB;"></i></div>
-        <div style="flex:1;"><div class="cmp-nm">Index Funds (Nifty 50 / S&P 500)</div><div class="cmp-tx">Low cost, diversified. Recommended by experts for Gen Z beginners. Only 7% of Gen Z owns them — most who should.</div></div>
-        <div style="text-align:right;flex-shrink:0;"><div class="cmp-pct">~12%</div><div class="cmp-lb">avg/yr</div></div>
-      </div>
-      <div class="cmp-row">
-        <div class="cmp-ic" style="background:#F0FDF4;"><i class="ti ti-chart-line" style="color:#16A34A;"></i></div>
-        <div style="flex:1;"><div class="cmp-nm">Balanced Advantage Fund SIP</div><div class="cmp-tx">Auto-balances stocks and bonds. Lower stress, consistent returns. Great for emotionally reactive investors.</div></div>
-        <div style="text-align:right;flex-shrink:0;"><div class="cmp-pct">~10%</div><div class="cmp-lb">avg/yr</div></div>
-      </div>
-      <div class="cmp-row">
-        <div class="cmp-ic" style="background:#FFFBEB;"><i class="ti ti-coins" style="color:#D97706;"></i></div>
-        <div style="flex:1;"><div class="cmp-nm">Sovereign Gold Bond (SGB)</div><div class="cmp-tx">Digital gold that also pays 2.5% interest. Gen Z's smarter approach to gold — not jewellery, but a real investment.</div></div>
-        <div style="text-align:right;flex-shrink:0;"><div class="cmp-pct">~8%</div><div class="cmp-lb">avg/yr</div></div>
-      </div>
-    </div>
-    <div class="sl">What Gen Z in India actually owns</div>
-    <div class="card">
-      <p style="font-size:11px;color:var(--mu);margin-bottom:10px;">InvestOnline / Motley Fool Gen Z Study 2025</p>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div><div style="display:flex;justify-content:space-between;margin-bottom:3px;"><span style="font-size:12px;color:var(--dk);">Stocks</span><span style="font-size:12px;font-weight:600;color:var(--or);">46%</span></div><div class="bb"><div class="bf" style="width:46%"></div></div></div>
-        <div><div style="display:flex;justify-content:space-between;margin-bottom:3px;"><span style="font-size:12px;color:var(--dk);">Cryptocurrency</span><span style="font-size:12px;font-weight:600;color:var(--or);">26%</span></div><div class="bb"><div class="bf" style="width:26%"></div></div></div>
-        <div><div style="display:flex;justify-content:space-between;margin-bottom:3px;"><span style="font-size:12px;color:var(--dk);">Mutual Funds</span><span style="font-size:12px;font-weight:600;color:var(--or);">14%</span></div><div class="bb"><div class="bf" style="width:14%"></div></div></div>
-        <div><div style="display:flex;justify-content:space-between;margin-bottom:3px;"><span style="font-size:12px;color:var(--dk);">ETFs</span><span style="font-size:12px;font-weight:600;color:var(--or);">12%</span></div><div class="bb"><div class="bf" style="width:12%"></div></div></div>
-        <div><div style="display:flex;justify-content:space-between;margin-bottom:3px;"><span style="font-size:12px;color:var(--dk);">Index Funds</span><span style="font-size:12px;font-weight:600;color:var(--or);">7%</span></div><div class="bb"><div class="bf" style="width:7%"></div></div></div>
-      </div>
-      <p style="font-size:12px;color:var(--mu);margin-top:10px;line-height:1.5;">Only 7% own index funds — yet experts say it's the best starting point. Sarathy bridges this gap.</p>
-    </div>
-    <button onclick="window.open('https://creator.voiceflow.com/share/6a16b775241a010e88134176/environment/main/draft','_blank')" style="margin:0 16px 20px;background:var(--or);color:white;border:none;border-radius:14px;padding:14px;font-size:15px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;width:calc(100% - 32px);display:flex;align-items:center;justify-content:center;gap:8px;"><i class="ti ti-message-circle"></i> Ask Sarathy where to start</button>
-  </div>
-  <nav class="nb">
-    <button class="ni" onclick="go('home')"><i class="ti ti-home"></i><span>Home</span></button>
-    <button class="ni" onclick="window.open('https://creator.voiceflow.com/share/6a16b775241a010e88134176/environment/main/draft','_blank')"><i class="ti ti-message-circle"></i><span>Sarathy</span></button>
-    <button class="ni" onclick="go('goals')"><i class="ti ti-target"></i><span>Goals</span></button>
-    <button class="ni" onclick="go('nri')"><i class="ti ti-map-pin"></i><span>NRI</span></button>
-    <button class="ni on" onclick="go('invest')"><i class="ti ti-trending-up"></i><span>Invest</span></button>
-  </nav>
-</div>
-
-</div>
+</div><!-- .phone -->
 
 <script>
-function go(n){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-'+n).classList.add('active');}
-function showPause(){document.getElementById('pause-overlay').style.display='flex';}
-function hidePause(){document.getElementById('pause-overlay').style.display='none';}
-
-function updateEF(v){
-  const exp=parseInt(v);
-  const need=exp*6;
-  const months=(3240/exp).toFixed(1);
-  document.getElementById('ef-exp').textContent=exp.toLocaleString();
-  document.getElementById('ef-need').textContent=need.toLocaleString();
-  document.getElementById('ef-need2') && (document.getElementById('ef-need2').textContent=need.toLocaleString());
-  document.getElementById('ef-months').textContent=months;
+// ── NAVIGATION ──
+function go(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
 }
 
-function updateSIP(){
-  const amt=parseInt(document.getElementById('sip-slider').value);
-  const yrs=parseInt(document.getElementById('sip-yrs-slider').value);
-  const r=0.08/12,n=yrs*12;
-  const fv=amt*(((Math.pow(1+r,n)-1)/r)*(1+r));
-  document.getElementById('sip-amt').textContent=amt;
-  document.getElementById('sip-yrs').textContent=yrs;
-  document.getElementById('sip-result').textContent='SGD $'+Math.round(fv).toLocaleString();
+// ── LOAN DETAIL DATA ──
+const LOANS = {
+  sidbi:{
+    bank:'SIDBI — Small Industries Dev Bank, Connaught Place',
+    name:'MSME Machinery Loan (CGTMSE Scheme)',
+    rate:'9.2%',
+    rateSub:'Per annum · Fixed for 3 years, then floating',
+    details:[
+      {k:'Loan Amount',v:'₹1,00,00,000'},
+      {k:'Tenure',v:'7 years (84 months)'},
+      {k:'Monthly EMI',v:'₹1,41,200'},
+      {k:'Total Interest',v:'₹18,40,800'},
+      {k:'Processing Fee',v:'₹2,50,000 (2.5%)'},
+      {k:'Collateral Required',v:'None (CGTMSE covered)'},
+      {k:'Prepayment Penalty',v:'Nil after 2 years'},
+      {k:'Approval Time',v:'3–5 working days'},
+      {k:'Nearest Branch',v:'Connaught Place, New Delhi'},
+    ],
+    sarathy:"Navnit bhai, this is the one. Government-backed, no collateral, lowest rate. Your credit score of 781 qualifies you without any issues. I genuinely believe Papaji would have taken this deal.",
+    rateColor:'var(--gn)'
+  },
+  hdfc:{
+    bank:'HDFC Bank — Rohini Sector 9, New Delhi',
+    name:'Business Growth Loan',
+    rate:'11.5%',
+    rateSub:'Per annum · Fixed',
+    details:[
+      {k:'Loan Amount',v:'₹1,00,00,000'},
+      {k:'Tenure',v:'5 years (60 months)'},
+      {k:'Monthly EMI',v:'₹2,19,800'},
+      {k:'Total Interest',v:'₹31,88,000'},
+      {k:'Processing Fee',v:'₹1,50,000 (1.5%)'},
+      {k:'Collateral Required',v:'Property or machinery'},
+      {k:'Prepayment Penalty',v:'2% of outstanding'},
+      {k:'Approval Time',v:'Same day in-principle'},
+      {k:'Nearest Branch',v:'Rohini Sector 9, Delhi'},
+    ],
+    sarathy:"It's fast and nearby, but you'd pay ₹13.5 lakh more in interest than SIDBI. That's real money. The speed isn't worth it here, especially when SIDBI only takes 3 days.",
+    rateColor:'var(--s)'
+  },
+  pnb:{
+    bank:'Punjab National Bank — Rohini, New Delhi (Your Bank)',
+    name:'Term Loan for Machinery',
+    rate:'10.75%',
+    rateSub:'Per annum · Floating (linked to MCLR)',
+    details:[
+      {k:'Loan Amount',v:'₹1,00,00,000'},
+      {k:'Tenure',v:'6 years (72 months)'},
+      {k:'Monthly EMI',v:'₹1,88,400'},
+      {k:'Total Interest',v:'₹25,64,800'},
+      {k:'Processing Fee',v:'₹1,50,000 (1.5%)'},
+      {k:'Collateral Required',v:'Machinery as security'},
+      {k:'Prepayment Penalty',v:'Nil for existing customers'},
+      {k:'Approval Time',v:'48 hours (existing customer)'},
+      {k:'Nearest Branch',v:'Rohini Branch (your existing account)'},
+    ],
+    sarathy:"This is convenient since it's your own bank and they know you. The rate is decent — but you'd pay ₹7.2 lakh more than SIDBI. Worth considering if SIDBI's process feels uncertain.",
+    rateColor:'var(--s)'
+  },
+  sbi:{
+    bank:'State Bank of India — Pitampura, New Delhi',
+    name:'SBI SME Advantage Loan',
+    rate:'10.9%',
+    rateSub:'Per annum · Floating',
+    details:[
+      {k:'Loan Amount',v:'₹1,00,00,000'},
+      {k:'Tenure',v:'6 years (72 months)'},
+      {k:'Monthly EMI',v:'₹1,91,200'},
+      {k:'Total Interest',v:'₹27,66,400'},
+      {k:'Processing Fee',v:'₹1,00,000 (1%)'},
+      {k:'Collateral Required',v:'Property or plant assets'},
+      {k:'Prepayment Penalty',v:'Nil'},
+      {k:'Approval Time',v:'5–7 working days'},
+      {k:'Nearest Branch',v:'Pitampura, Outer Ring Road'},
+    ],
+    sarathy:"A solid option but slightly slower process and requires collateral. Unless SIDBI doesn't work out, I'd put this as a backup.",
+    rateColor:'var(--ink-2)'
+  },
+  icici:{
+    bank:'ICICI Bank — Netaji Subhash Place, Delhi',
+    name:'ICICI Business Instalment Loan',
+    rate:'12.0%',
+    rateSub:'Per annum · Fixed',
+    details:[
+      {k:'Loan Amount',v:'₹1,00,00,000'},
+      {k:'Tenure',v:'5 years (60 months)'},
+      {k:'Monthly EMI',v:'₹2,22,400'},
+      {k:'Total Interest',v:'₹33,44,000'},
+      {k:'Processing Fee',v:'₹2,00,000 (2%)'},
+      {k:'Collateral Required',v:'None'},
+      {k:'Prepayment Penalty',v:'3% of outstanding'},
+      {k:'Approval Time',v:'24 hours (digital)'},
+      {k:'Nearest Branch',v:'Netaji Subhash Place, Delhi'},
+    ],
+    sarathy:"Fastest approval, fully digital, no collateral — but the most expensive option on your shortlist. The interest cost is ₹15 lakh more than SIDBI. I'd skip this one.",
+    rateColor:'var(--rd)'
+  }
+};
+
+function showLoanDetail(id){
+  const L = LOANS[id];
+  if(!L) return;
+  const bodyId = document.getElementById('s-home').classList.contains('active') ? 'loan-overlay-body' : 'loan-overlay-body-2';
+  const overlayId = document.getElementById('s-home').classList.contains('active') ? 'loan-overlay' : 'loan-overlay-2';
+  const rows = L.details.map(d=>`<div class="lo-detail-row"><div class="lo-dk">${d.k}</div><div class="lo-dv">${d.v}</div></div>`).join('');
+  document.getElementById(bodyId).innerHTML = `
+    <div class="osh-handle"></div>
+    <div class="lo-bank">${L.bank}</div>
+    <div class="lo-name">${L.name}</div>
+    <div class="lo-rate-big" style="color:${L.rateColor}">${L.rate}</div>
+    <div class="lo-rate-sub">${L.rateSub}</div>
+    ${rows}
+    <div class="lo-sarathy">
+      <div class="lo-sarathy-lbl">Sarathy says</div>
+      <div class="lo-sarathy-txt">${L.sarathy}</div>
+    </div>
+    <button class="lo-apply" onclick="openChat('loan_${id}');document.getElementById('${overlayId}').classList.remove('show')">Talk to Sarathy about this loan</button>
+    <button onclick="document.getElementById('${overlayId}').classList.remove('show')" style="width:100%;background:none;border:none;padding:12px;font-size:14px;color:var(--ink-3);cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;margin-top:4px">Close</button>
+  `;
+  document.getElementById(overlayId).classList.add('show');
 }
 
-const SYS=`You are Sarathy, a warm and personal financial companion for university students and NRIs in Singapore. You are not a bank or advisor — you are the brilliant friend who understands money and is always unconditionally on the user's side.
+// Close overlay on backdrop click
+document.querySelectorAll('.overlay').forEach(o=>{
+  o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('show')});
+});
 
-Speak: warm, direct, casual. Short sentences. No jargon without explanation. ONE question at a time. Always acknowledge feelings before money. Max 3-4 sentences unless asked something detailed.
+// ── CHAT CONTEXT-AWARE OPENINGS ──
+const CTX = {
+  morning: `Navnit bhai — pehle bata, kaisa feel ho raha hai aaj? This ₹1 crore decision has been sitting on you for a while. I'm not going anywhere. Whatever's in your head, let it out.`,
+  home_checkin: `Navnit bhai, bolo — kya chal raha hai? How are you feeling about Pacco Industrial today?`,
+  machine_decision: `Alright, let's talk about this machine. I've been waiting to share what I found. Your balance is ₹34.7 lakh. Monthly revenue average is ₹5.4 lakh. The SIDBI loan EMI is ₹1.41 lakh — that's 26% of your revenue. That leaves you ₹4 lakh every month to run the factory and live your life. Does that feel manageable to you?`,
+  loan_sidbi: `So you're looking at SIDBI — honestly this is the one I'd go with for you. No collateral, government backed, lowest rate I found anywhere in Delhi. Your credit score of 781 is excellent — this will be smooth. What's your main hesitation right now?`,
+  loan_hdfc: `HDFC is fast and the branch is close to you in Rohini. But Navnit bhai — hear me out — you'd pay ₹13.5 lakh more in interest compared to SIDBI. That money doesn't go to Pacco's future. It goes to the bank. Is speed worth that much to you?`,
+  loan_pnb: `Your own PNB branch is a real option — they know you, they trust you, and approval is fast. The rate is decent at 10.75%. The only reason I'd still prefer SIDBI is the ₹7.2 lakh extra interest. But if SIDBI feels uncertain, PNB is a solid Plan B. What do you want to know?`,
+};
 
-Key data you know: 93% of Gen Z save consistently but 69% lack emergency funds; 72% are underinsured; only 7% own index funds despite experts recommending them; 29% carry multiple debts; 85% face rising cost-of-living challenges.
+const SYS = `You are Sarathy. Navnit Singh's deeply personal financial companion and best friend — not an app, not an advisor.
 
-Never: judge past decisions, say I am an AI, give more than one next step at a time.
+Who Navnit is:
+- Name: Navnit Singh
+- Business: Pacco Industrial Corporation, a manufacturing factory in Delhi
+- Situation: Considering buying a carburetor-making machine for ₹1 crore via a business loan
+- This machine would make him the biggest carburetor supplier in India
+- The machine was his late father's (Papaji's) dream — Papaji is no longer alive
+- Current bank balance: ₹34.72 lakh (PNB current account)
+- Monthly revenue average: ₹5.4 lakh
+- Credit score: 781 (excellent)
+- Best loan found: SIDBI MSME Machinery Loan at 9.2%, no collateral, EMI ₹1.41L/mo
 
-Goal: make the user feel genuinely understood, then help them take ONE clear next step.`;
+Key Delhi NCR loan options you know about:
+1. SIDBI - 9.2% - EMI ₹1.41L - No collateral - BEST PICK
+2. PNB (his own bank) - 10.75% - EMI ₹1.88L - existing customer advantage
+3. SBI - 10.9% - EMI ₹1.91L
+4. HDFC - 11.5% - EMI ₹2.19L
+5. ICICI - 12.0% - EMI ₹2.22L
 
-let hist=[],busy=false;
+Your personality in 5 rules:
+1. Speak like a real dost (friend) — use occasional Hindi/Hinglish words naturally (yaar, bhai, sahi hai, dekh). Not forced, just natural.
+2. Read the emotion first ALWAYS. Before any number, acknowledge what Navnit is feeling.
+3. One thing at a time. One question. One next step.
+4. Remember everything above — reference Papaji, reference the factory, reference his balance. Make him feel completely known.
+5. Be warm, direct, honest. Never lecture. Never formal. Never generic.
 
-function addMsg(txt,role){
-  const msgs=document.getElementById('chat-messages');
-  const w=document.createElement('div');w.className='msg '+role;
-  w.innerHTML=role==='ag'?`<div class="av">S</div><div><div class="bu">${txt.replace(/\n/g,'<br>')}</div></div>`:`<div class="bu">${txt}</div>`;
-  msgs.appendChild(w);msgs.scrollTop=msgs.scrollHeight;
+Your goal: Help Navnit see clearly that he CAN do this, that the numbers support it, and that SIDBI is the right loan — but let him arrive at that conclusion himself, gently.
+
+Maximum 3-4 sentences per response. Make every word count.`;
+
+let hist=[], busy=false, chatCtx='';
+
+function openChat(ctx){
+  go('s-chat');
+  hist=[];
+  chatCtx=ctx;
+  document.getElementById('chat-msgs').innerHTML='';
+  const opening = CTX[ctx] || CTX.home_checkin;
+  setTimeout(()=>{
+    addMsg(opening,'agent');
+    hist.push({role:'assistant',content:opening});
+  },350);
 }
-function showTyping(){const m=document.getElementById('chat-messages');const t=document.createElement('div');t.className='msg ag';t.id='typing';t.innerHTML='<div class="av">S</div><div class="ty"><div class="td"></div><div class="td"></div><div class="td"></div></div>';m.appendChild(t);m.scrollTop=m.scrollHeight;}
+
+function addMsg(text,role){
+  const msgs=document.getElementById('chat-msgs');
+  const wrap=document.createElement('div');
+  wrap.className='msg '+role;
+  if(role==='agent'){
+    wrap.innerHTML=`<div class="msg-av">S</div><div><div class="bubble">${text.replace(/\n/g,'<br>')}</div></div>`;
+  } else {
+    wrap.innerHTML=`<div class="bubble">${text}</div>`;
+  }
+  msgs.appendChild(wrap);
+  msgs.scrollTop=msgs.scrollHeight;
+}
+
+function addQuickReplies(replies){
+  const msgs=document.getElementById('chat-msgs');
+  const row=document.createElement('div');
+  row.className='quick-replies';
+  row.style.paddingLeft='42px';
+  replies.forEach(r=>{
+    const btn=document.createElement('button');
+    btn.className='qr';
+    btn.textContent=r;
+    btn.onclick=()=>{
+      row.querySelectorAll('.qr').forEach(b=>b.disabled=true);
+      addMsg(r,'user');
+      hist.push({role:'user',content:r});
+      callAPI();
+    };
+    row.appendChild(btn);
+  });
+  msgs.appendChild(row);
+  msgs.scrollTop=msgs.scrollHeight;
+}
+
+function showTyping(){
+  const msgs=document.getElementById('chat-msgs');
+  const t=document.createElement('div');
+  t.className='typing-row';t.id='typing';
+  t.innerHTML=`<div class="msg-av">S</div><div class="typing-bubble"><div class="tdot"></div><div class="tdot"></div><div class="tdot"></div></div>`;
+  msgs.appendChild(t);
+  msgs.scrollTop=msgs.scrollHeight;
+}
 function hideTyping(){const t=document.getElementById('typing');if(t)t.remove();}
-async function pick(btn,txt){btn.closest('.cs').querySelectorAll('.cb').forEach(b=>b.disabled=true);addMsg(txt,'us');hist.push({role:'user',content:txt});await ask();}
-async function send(){const inp=document.getElementById('chat-input');const txt=inp.value.trim();if(!txt||busy)return;inp.value='';inp.style.height='auto';addMsg(txt,'us');hist.push({role:'user',content:txt});await ask();}
-async function ask(){
-  if(busy)return;busy=true;document.getElementById('send-btn').disabled=true;showTyping();
+
+async function callAPI(){
+  busy=true;
+  document.getElementById('send-btn').disabled=true;
+  showTyping();
   try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:350,system:SYS,messages:hist})});
-    const d=await res.json();const reply=d.content?.[0]?.text||"I'm right here with you.";
-    hist.push({role:'assistant',content:reply});hideTyping();addMsg(reply,'ag');
-  }catch(e){hideTyping();addMsg("I'm here. (Quick connection hiccup — but I'm not going anywhere.)",'ag');}
-  busy=false;document.getElementById('send-btn').disabled=false;
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:220,
+        system:SYS,
+        messages:hist
+      })
+    });
+    const d=await res.json();
+    const reply=d.content?.[0]?.text||"Yaar, ek second — main soch raha hoon.";
+    hist.push({role:'assistant',content:reply});
+    hideTyping();
+    addMsg(reply,'agent');
+
+    // Add context-aware quick replies
+    if(hist.length<=3){
+      if(chatCtx==='morning'||chatCtx==='home_checkin'){
+        addQuickReplies(["Thoda nervous hoon","Let's talk numbers","Tell me about SIDBI"]);
+      } else if(chatCtx==='machine_decision'){
+        addQuickReplies(["Yes, manageable","I'm worried about risk","Tell me more about the loan"]);
+      }
+    }
+  } catch(e){
+    hideTyping();
+    addMsg("Yaar, connection thoda slow hai. Try karo phir se.",'agent');
+  }
+  busy=false;
+  document.getElementById('send-btn').disabled=false;
+}
+
+async function send(){
+  const inp=document.getElementById('chat-inp');
+  const text=inp.value.trim();
+  if(!text||busy) return;
+  inp.value='';inp.style.height='auto';
+  addMsg(text,'user');
+  hist.push({role:'user',content:text});
+  await callAPI();
 }
 </script>
 </body>
